@@ -167,6 +167,39 @@ describe("Test every mini apps", ()=> {
         .should('have.attr','style','width: 95%;');
     })
 
+    it("Set each rate and assert image, text and number",()=>{
+        cy.get('[href="/apps/rating/"] > .card-content').click();
+        cy.starBeforeContentCheck('1','"I just hate it"');
+        cy.starBeforeContentCheck('2','"I don\'t like it"');
+        cy.starBeforeContentCheck('3','"This is awesome"');
+        cy.starBeforeContentCheck('4','"I just like it"');
+        cy.starBeforeContentCheck('5','"I just love it"');
+    })
+
+    it("Covered Element",()=>{
+        cy.get('[href="/apps/covered/"] > .card-content').click();
+        cy.get('#fugitive').click({force:true});
+        cy.get('#info').should('contain','Mission accomplished');
+    })
+
+    it("Budget Tracker",()=>{
+        cy.get('[href="/apps/budget-tracker/"] > .card-content').click();
+        cy.addAndFillBudgetData('2024-10-08','Salary','income','5000');
+        cy.get('.entries').children().should('have.length','1');
+        cy.addAndFillBudgetData('2024-10-09','Food','expense','300');
+        cy.get('.entries').children().should('have.length','2');
+        cy.addAndFillBudgetData('2024-10-11','Phone','expense','700');
+        cy.get('.entries').children().should('have.length','3');
+        cy.get('.entries').children().eq(2).find('.delete-entry').click();
+        cy.get('.entries').children().should('have.length','2');
+        cy.addAndFillBudgetData('2024-10-11','Phone','expense','800');
+        cy.get('.entries').children().should('have.length','3');    
+    })
+    
+    it.only("Right click context menu",()=>{
+        cy.get('[href="/apps/context-menu/"] > .card-content').click();
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Twitter')
+    })
 
 })
 
