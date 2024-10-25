@@ -120,16 +120,6 @@ describe("Test every mini apps", ()=> {
     //     // });
     // });
 
-    // Jeff Bezos
-    // Bill Gates
-    // Warren Buffett
-    // Bernard Arnault
-    // Carlos Slim Helu 
-    // Americano Ortega
-    // Larry Ellison
-    // Mark Zuckerberg
-    // Michael Bloomberg
-    // Larry Page
 
     it('Open new tab and assert text on it',()=>{
         cy.get('[href="/apps/new-tab/"] > .card-content').click();
