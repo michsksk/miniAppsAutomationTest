@@ -196,10 +196,34 @@ describe("Test every mini apps", ()=> {
         cy.get('.entries').children().should('have.length','3');    
     })
     
-    it.only("Right click context menu",()=>{
+    it("Right click context menu",()=>{
         cy.get('[href="/apps/context-menu/"] > .card-content').click();
-        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Twitter')
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Preview');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Twitter');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Instagram');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Dribble');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Share','Telegram');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Get Link');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Rename');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Delete');
+        cy.openRightClickMenuThenClickOnOptionAndAssert('Settings');
     })
+
+    // it.only("Redirect Chain",()=>{
+    //     let urlArray= [];
+    //       cy.get('[href="/apps/redirect/"] > .card-content').click();
+    //       cy.on('url:changed', (url) => {
+    //         urlArray.push(url);
+    //       });
+    //       cy.get('.btn').click();
+    //       cy.log(urlArray[0])
+    // })
+
+    //it.only("Rage Slider Value",()=>{
+    //    cy.get('[href="/apps/range-slider/"] > .card-content').click();
+    //    cy.get('input').invoke('val','50').trigger(change);
+    //})
+
 
 })
 
